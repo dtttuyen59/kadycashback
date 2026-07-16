@@ -1,77 +1,8 @@
-<!DOCTYPE html>
-<html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>KADY CASHBACK</title>
-<style>
-body{font-family:Arial;background:#ee4d2d;margin:0;padding:20px}
-.card{max-width:480px;margin:auto;background:#fff;border-radius:16px;padding:20px}
-h1{text-align:center;color:#ee4d2d}input,button{width:100%;padding:12px;margin:8px 0;border-radius:10px}
-button{background:#ee4d2d;color:#fff;border:none;font-weight:bold}
-#copy{background:#16a34a}#buy{background:#2563eb}
-</style></head><body><div class="card">
-<div style="font-size:64px;text-align:center">🌽</div>
-<h1>KADY CASHBACK</h1>
-<input id="link" placeholder="Dán link Shopee">
-<input id="price" type="number" placeholder="Giá sản phẩm (đ)">
-<p><b>Hoàn ước tính: <span id="cb">0đ</span></b></p>
-<button onclick="calc()">TÍNH HOA HỒNG</button>
-<button id="copy" onclick="copyMsg()">COPY</button>
-<button id="buy" onclick="buy()">MUA NGAY</button>
-</div>
 <script>
-let msg="",lnk="";
-function fm(n){return Number(n).toLocaleString("vi-VN")+"đ";}
-function calc(){
-lnk=link.value.trim();let p=+price.value||0;
-let cb=Math.round(p*0.1*0.95);
-document.getElementById("cb").innerText=fm(cb);
-msg=`🌽 KADY CASHBACK
 
-🔗 ${lnk}
+let finalLink="";
 
-💵 Giá: ${fm(p)}
-💰 Hoàn ước tính: ${fm(cb)}
-
-🛒 MUA NGAY`;
-}
-function copyMsg(){navigator.clipboard.writeText(msg);alert("Đã copy.");}
-function buy(){if(lnk) location.href=lnk;}
-</script></body></html>
-💵 M giữ:
-${Math.round(keep).toLocaleString()}đ
-
-`;
-
-}
-
-
-function shareZalo(){
-
-let text=
-`🛒 ${data.name}
-
-💰 Giá: ${Number(data.price).toLocaleString()}đ
-
-🎁 Hoàn tiền:
-${Math.round(data.customer).toLocaleString()}đ
-
-Mua tại:
-${data.link}
-
-❤️ Mua hàng vừa có ưu đãi vừa được hoàn tiền`;
-
-let url=
-"https://zalo.me/share?text="
-+encodeURIComponent(text);
-
-
-window.open(url,"_blank");
-
-}
-
-</script>
-
-</body>
-</html>function formatMoney(x){
+function formatMoney(x){
 return Number(x).toLocaleString("vi-VN")+"đ";
 }
 
