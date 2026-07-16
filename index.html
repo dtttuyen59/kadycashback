@@ -115,11 +115,21 @@ function formatMoney(x){
 return Number(x).toLocaleString("vi-VN")+"đ";
 }
 
-function create(){
+function calculate() {
+  const price = Number(document.getElementById("price").value.replace(/\./g, ""));
+  const percent = Number(document.getElementById("commission").value);
 
-const link=document.getElementById("link").value.trim();
+  if (!price || !percent) {
+    alert("Nhập giá và % hoa hồng");
+    return;
+  }
 
-const price=Number(document.getElementById("price").value);
+  const commission = price * (percent / 100) * 0.9 * 0.95;
+
+  document.getElementById("result").innerHTML =
+      "💰 Hoàn ước tính:<br>" +
+      commission.toLocaleString("vi-VN") + "đ";
+}
 
 if(link==""){
 alert("Nhập link Shopee");
@@ -128,6 +138,11 @@ return;
 
 if(price<=0){
 alert("Nhập giá sản phẩm");
+  <input
+  type="number"
+  id="commission"
+  placeholder="% hoa hồng (ví dụ 10)"
+/>
 return;
 }
 
