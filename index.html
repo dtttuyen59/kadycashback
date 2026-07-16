@@ -106,6 +106,7 @@ font-size:18px;
 <button id="copy" onclick="copyText()">COPY NỘI DUNG ZALO</button>
 
 <button id="buy" onclick="buy()">MUA NGAY</button>
+  
 <script>
 
 let finalLink="";
@@ -132,7 +133,7 @@ return;
 
 finalLink=link;
 
-const cashback=Math.round(price*0.10*0.95);
+const cashback=Math.round(price*0.90*0.95);
 
 document.getElementById("cashback").innerHTML=formatMoney(cashback);
 
