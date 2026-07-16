@@ -6,21 +6,25 @@
 <title>KADY CASHBACK</title>
 
 <style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
 
 body{
-margin:0;
+background:#ee4d2d;
 padding:20px;
-font-family:Arial,sans-serif;
-background:#ff6b00;
 }
 
 .container{
 max-width:500px;
 margin:auto;
 background:#fff;
-padding:20px;
 border-radius:20px;
-box-shadow:0 5px 15px rgba(0,0,0,.2);
+padding:20px;
+box-shadow:0 8px 20px rgba(0,0,0,.2);
 }
 
 .logo{
@@ -30,160 +34,134 @@ text-align:center;
 
 h1{
 text-align:center;
-color:#ff6b00;
-margin:5px 0;
+color:#ee4d2d;
+margin-top:10px;
+margin-bottom:20px;
+}
+
+label{
+font-weight:bold;
+display:block;
+margin-top:12px;
+margin-bottom:6px;
 }
 
 input{
 width:100%;
 padding:12px;
-margin:8px 0;
-border-radius:10px;
 border:1px solid #ddd;
+border-radius:10px;
 font-size:16px;
-box-sizing:border-box;
 }
 
 button{
 width:100%;
 padding:14px;
+margin-top:12px;
 border:none;
 border-radius:12px;
-margin-top:10px;
-font-size:18px;
+font-size:17px;
 font-weight:bold;
 cursor:pointer;
 }
 
-#create{
-background:#ff6b00;
-color:#fff;
+.btnCalc{
+background:#ee4d2d;
+color:white;
 }
 
-#copy{
-background:#28a745;
-color:#fff;
+.btnCopy{
+background:#16a34a;
+color:white;
 }
 
-#buy{
-background:#e53935;
-color:#fff;
+.btnBuy{
+background:#2563eb;
+color:white;
 }
 
 .result{
 margin-top:20px;
-background:#fff3e8;
+background:#fff7f4;
 padding:15px;
 border-radius:12px;
-font-size:18px;
+border:1px solid #ffd2c7;
 }
 
-</style>
-</head>
+.money{
+font-size:26
+function calculate(){
 
-<body>
+const link=document.getElementById("link").value.trim();
 
-<div class="container">
+const price=Number(document.getElementById("price").value);
 
-<div class="logo">🌽</div>
-
-<h1>KADY CASHBACK</h1>
-
-<input id="link" placeholder="Dán link Shopee">
-
-<input id="price" type="number" placeholder="Giá sản phẩm">
-
-<button id="create" onclick="create()">TÍNH HOA HỒNG</button>
-
-<div class="result">
-
-<b>💰 Hoàn ước tính:</b>
-
-<div id="cashback">0đ</div>
-
-</div>
-
-<button id="copy" onclick="copyText()">COPY NỘI DUNG ZALO</button>
-
-<button id="buy" onclick="buy()">MUA NGAY</button>
-  
-<script>
-
-let finalLink="";
-
-function formatMoney(x){
-return Number(x).toLocaleString("vi-VN")+"đ";
-}
-
-function calculate() {
-  const price = Number(document.getElementById("price").value.replace(/\./g, ""));
-  const percent = Number(document.getElementById("commission").value);
-
-  if (!price || !percent) {
-    alert("Nhập giá và % hoa hồng");
-    return;
-  }
-
-  const commission = price * (percent / 100) * 0.9 * 0.95;
-
-  document.getElementById("result").innerHTML =
-      "💰 Hoàn ước tính:<br>" +
-      commission.toLocaleString("vi-VN") + "đ";
-}
+const percent=Number(document.getElementById("percent").value);
 
 if(link==""){
-alert("Nhập link Shopee");
+alert("Vui lòng nhập link Shopee.");
 return;
 }
 
 if(price<=0){
-alert("Nhập giá sản phẩm");
-  <input
-  type="number"
-  id="commission"
-  placeholder="% hoa hồng (ví dụ 10)"
-/>
+alert("Vui lòng nhập giá sản phẩm.");
+return;
+}
+
+if(percent<=0){
+alert("Vui lòng nhập % hoa hồng.");
 return;
 }
 
 finalLink=link;
 
-const cashback=Math.round(price*0.90*0.95);
+const cashback=Math.round(
+price*(percent/100)*0.9*0.95
+);
 
-document.getElementById("cashback").innerHTML=formatMoney(cashback);
+document.getElementById("cashback").innerHTML=
+money(cashback);
 
-window.zaloText=
+zaloText=
 `🌽 KADY CASHBACK 🌽
 
-🛒 Link:
+🔗 Link sản phẩm:
 ${link}
 
-💰 Giá sản phẩm:
-${formatMoney(price)}
+💵 Giá sản phẩm:
+${money(price)}
 
-🎁 Hoàn ước tính:
-${formatMoney(cashback)}
+📈 Hoa hồng:
+${percent}%
 
-🔥 Bấm MUA NGAY để đặt hàng nhé!`;
+💰 Hoàn ước tính:
+${money(cashback)}
+
+📌 Hoàn được tính theo:
+
+Giá × ${percent}% × 90% × 95%
+
+🛒 MUA NGAY:
+${link}`;
+
 }
-
 function copyText(){
 
-if(!window.zaloText){
-alert("Hãy tính trước.");
+if(zaloText==""){
+alert("Hãy bấm TÍNH HOA HỒNG trước.");
 return;
 }
 
-navigator.clipboard.writeText(window.zaloText);
+navigator.clipboard.writeText(zaloText);
 
-alert("Đã copy nội dung Zalo.");
+alert("✅ Đã copy nội dung để gửi Zalo.");
 
 }
 
-function buy(){
+function buyNow(){
 
 if(finalLink==""){
-alert("Chưa có link.");
+alert("Chưa có link Shopee.");
 return;
 }
 
@@ -191,7 +169,20 @@ window.open(finalLink,"_blank");
 
 }
 
+function clearAll(){
+
+document.getElementById("link").value="";
+document.getElementById("price").value="";
+document.getElementById("percent").value="";
+document.getElementById("cashback").innerHTML="0đ";
+
+finalLink="";
+zaloText="";
+
+}
 </script>
+
+</div>
 
 </body>
 </html>
