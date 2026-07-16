@@ -1,116 +1,41 @@
 <!DOCTYPE html>
-<html lang="vi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bot Affiliate Shopee</title>
-
+<html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KADY CASHBACK</title>
 <style>
-body{
-  font-family: Arial, sans-serif;
-  background:#f5f5f5;
-  padding:20px;
-}
-.box{
-  max-width:450px;
-  margin:auto;
-  background:white;
-  padding:20px;
-  border-radius:15px;
-}
-h2{
-  text-align:center;
-}
-input,button{
-  width:100%;
-  padding:12px;
-  margin-top:10px;
-  border-radius:8px;
-  border:1px solid #ddd;
-  font-size:16px;
-}
-button{
-  background:#ff5722;
-  color:white;
-  border:none;
-  cursor:pointer;
-}
-.result{
-  margin-top:15px;
-  background:#eee;
-  padding:15px;
-  border-radius:10px;
-}
-.zalo{
-  background:#0068ff;
-}
-</style>
-
-</head>
-
-<body>
-
-<div class="box">
-
-<h2>🛒 Bot Affiliate Shopee</h2>
-
-<input id="name" placeholder="Tên sản phẩm">
-
-<input id="price" type="number" placeholder="Giá sản phẩm">
-
-<input id="commission" type="number" placeholder="Hoa hồng Shopee">
-
-<input id="link" placeholder="Link affiliate">
-
-<button onclick="calc()">💰 Tính hoàn khách</button>
-
-<div class="result" id="result">
-Chưa có dữ liệu
+body{font-family:Arial;background:#ee4d2d;margin:0;padding:20px}
+.card{max-width:480px;margin:auto;background:#fff;border-radius:16px;padding:20px}
+h1{text-align:center;color:#ee4d2d}input,button{width:100%;padding:12px;margin:8px 0;border-radius:10px}
+button{background:#ee4d2d;color:#fff;border:none;font-weight:bold}
+#copy{background:#16a34a}#buy{background:#2563eb}
+</style></head><body><div class="card">
+<div style="font-size:64px;text-align:center">🌽</div>
+<h1>KADY CASHBACK</h1>
+<input id="link" placeholder="Dán link Shopee">
+<input id="price" type="number" placeholder="Giá sản phẩm (đ)">
+<p><b>Hoàn ước tính: <span id="cb">0đ</span></b></p>
+<button onclick="calc()">TÍNH HOA HỒNG</button>
+<button id="copy" onclick="copyMsg()">COPY</button>
+<button id="buy" onclick="buy()">MUA NGAY</button>
 </div>
-
-<button class="zalo" onclick="shareZalo()">
-📤 Chia sẻ Zalo nhanh
-</button>
-
-</div>
-
-
 <script>
-
-let data={};
-
+let msg="",lnk="";
+function fm(n){return Number(n).toLocaleString("vi-VN")+"đ";}
 function calc(){
+lnk=link.value.trim();let p=+price.value||0;
+let cb=Math.round(p*0.1*0.95);
+document.getElementById("cb").innerText=fm(cb);
+msg=`🌽 KADY CASHBACK
 
-let name=document.getElementById("name").value;
-let price=document.getElementById("price").value;
-let commission=Number(document.getElementById("commission").value);
-let link=document.getElementById("link").value;
+🔗 ${lnk}
 
+💵 Giá: ${fm(p)}
+💰 Hoàn ước tính: ${fm(cb)}
 
-let customer = commission * 0.855;
-let keep = commission * 0.145;
-
-
-data={
-name,
-price,
-commission,
-customer,
-keep,
-link
-};
-
-
-document.getElementById("result").innerHTML=
-
-`
-<b>${name}</b><br><br>
-
-💰 Giá: ${Number(price).toLocaleString()}đ<br>
-
-🎁 Hoàn khách:
-<b>${Math.round(customer).toLocaleString()}đ</b><br>
-
+🛒 MUA NGAY`;
+}
+function copyMsg(){navigator.clipboard.writeText(msg);alert("Đã copy.");}
+function buy(){if(lnk) location.href=lnk;}
+</script></body></html>
 💵 M giữ:
 ${Math.round(keep).toLocaleString()}đ
 
