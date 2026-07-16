@@ -1,3 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KADY CASHBACK</title>
+
+<style>
+
+body{
+margin:0;
+padding:20px;
+font-family:Arial,sans-serif;
+background:#ff6b00;
+}
+
+.container{
+max-width:500px;
+margin:auto;
+background:#fff;
+padding:20px;
+border-radius:20px;
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+
+.logo{
+font-size:60px;
+text-align:center;
+}
+
+h1{
+text-align:center;
+color:#ff6b00;
+margin:5px 0;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:8px 0;
+border-radius:10px;
+border:1px solid #ddd;
+font-size:16px;
+box-sizing:border-box;
+}
+
+button{
+width:100%;
+padding:14px;
+border:none;
+border-radius:12px;
+margin-top:10px;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+}
+
+#create{
+background:#ff6b00;
+color:#fff;
+}
+
+#copy{
+background:#28a745;
+color:#fff;
+}
+
+#buy{
+background:#e53935;
+color:#fff;
+}
+
+.result{
+margin-top:20px;
+background:#fff3e8;
+padding:15px;
+border-radius:12px;
+font-size:18px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">🌽</div>
+
+<h1>KADY CASHBACK</h1>
+
+<input id="link" placeholder="Dán link Shopee">
+
+<input id="price" type="number" placeholder="Giá sản phẩm">
+
+<button id="create" onclick="create()">TÍNH HOA HỒNG</button>
+
+<div class="result">
+
+<b>💰 Hoàn ước tính:</b>
+
+<div id="cashback">0đ</div>
+
+</div>
+
+<button id="copy" onclick="copyText()">COPY NỘI DUNG ZALO</button>
+
+<button id="buy" onclick="buy()">MUA NGAY</button>
 <script>
 
 let finalLink="";
@@ -24,7 +132,7 @@ return;
 
 finalLink=link;
 
-const cashback=Math.round(price*0.90*0.95);
+const cashback=Math.round(price*0.10*0.95);
 
 document.getElementById("cashback").innerHTML=formatMoney(cashback);
 
